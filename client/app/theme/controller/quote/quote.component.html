@@ -31,7 +31,7 @@
                             <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
                             <input #gb type="text" pInputText size="50" placeholder="Global Filter">
                         </div>
-                        <p-dataTable [value]="quotes" selectionMode="single" [(selection)]="selectedQuote" [globalFilter]="gb" (onRowDblclick)="onRowDblclick()"
+                        <p-dataTable [value]="quotes" selectionMode="single" [(selection)]="selectedQuote" [globalFilter]="gb" (onRowDblclick)="onRowDblclick('')"
                             [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
 
                             <p-column field="name" header="Name"></p-column>
