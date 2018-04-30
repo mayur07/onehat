@@ -25,7 +25,7 @@ export class QuoteDocComponent implements OnInit {
         this.http.post('api/quote/saveDocx', { html: this.el.nativeElement['innerHTML'] }).subscribe((objecturl:string) => {
             debugger;           
             window.open(objecturl);
-            //console.log(url, '......');
+            console.log(objecturl, '......');
             //window.open(url);
         })
     }
