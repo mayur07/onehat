@@ -1,0 +1,350 @@
+<!-- BEGIN: Left Aside -->
+<!-- BEGIN: Left Aside -->
+
+<div class="m-content">
+    <div class="row">
+        <div class="m-portlet" style="width:100%">
+            <div class="col-xl-12" style="padding: 3% 6% 0 6%;">
+                <p-steps [model]="items" [(activeIndex)]="activeIndex"></p-steps>
+            </div>
+            <div class="col-xl-12" *ngIf="quotes.length" [hidden]="!projectTable">
+                <br>
+                <br>
+                <div class="m-grid__item m-grid__item--fluid m-wrapper quotes">
+                    <p-dataTable [value]="quotes" selectionMode="single" [(selection)]="selectedQuote" (onRowDblclick)="onRowDblclick()">
+                        <p-header>List of Projects</p-header>
+                        <p-column field="name" header="Project Name"></p-column>
+                        <p-column field="date" header="Start Date">
+                            <ng-template let-col let-project="rowData" pTemplate="body">
+                                <span>{{project.date | date:'dd/MM/yyyy'}}</span>
+                            </ng-template>
+                        </p-column>
+                        <p-column field="outcome" header="Quote Status">
+                            <ng-template let-col let-quote="rowData" pTemplate="body">
+                                <span class="m-badge m-badge--wide {{quote.outcome}}">{{quote.outcome}}</span>
+                            </ng-template>
+                        </p-column>
+                        <p-column field="projectStatus" header="Project Status">
+                            <ng-template let-col let-quote="rowData" pTemplate="body">
+                                <span class="m-badge m-badge--wide {{quote.projectStatus}}">{{quote.projectStatus}}</span>
+                            </ng-template>
+                        </p-column>
+                        <p-column header="">
+                            <ng-template let-col let-quote="rowData" pTemplate="body">
+                                <span style="overflow: visible; width: 110px;">
+                                    <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details"
+                                        (click)="onRowDblclick(quote)">
+                                        <i class="la la-edit"></i>
+                                    </a>
+                                    <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Delete">
+                                        <i class="la la-trash"></i>
+                                    </a>
+                                </span>
+                            </ng-template>
+                        </p-column>
+
+                    </p-dataTable>
+                </div>
+            </div>
+            <div class="col-xl-12" [hidden]="!projectForm">
+                <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" name="project_form">
+                    <div class="m-portlet__body">
+                        <div class="form-group m-form__group row">
+
+                            <div class="form-group m-form__group col-lg-4">
+                                <label>
+                                    Name
+                                </label>
+
+                                <input aria-describedby="no" class="form-control m-input" name="name" [disabled]="isComplete" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="projectInfo.name" id="name" type="text">
+                            </div>
+                            <div class="form-group m-form__group col-lg-4">
+                                <label>
+                                    Quote Date
+                                </label>
+
+                                <input aria-describedby="no" class="form-control m-input" name="date" [disabled]="isComplete" [ngModelOptions]="{standalone: true}"
+                                    [ngModel]="projectInfo.quote_date | date:'yyyy-MM-dd'" (ngModelChange)="projectInfo.quote_date = $event"
+                                    id="name" type="date">
+                            </div>
+                            <div class="form-group m-form__group col-lg-12">
+                                <label>
+                                    Scope
+                                </label>
+
+                                <p-editor [disabled]="isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="projectInfo.scopeDetail" [style]="{'height':'200px'}"></p-editor>
+                            </div>
+
+                            <div class="form-group m-form__group col-lg-12">
+                                <label>
+                                    Sight Address
+                                </label>
+
+                                <div class="col-lg-12 form-group m-form__group row">
+                                    <div class="col-lg-6">
+                                        <label>
+                                            Address Line 1:
+                                        </label>
+                                        <div class="m-input-icon m-input-icon--right">
+                                            <input class="form-control m-input" name="name" [disabled]="isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="projectInfo.address.address1"
+                                                id="name" type="text">
+                                            <span class="m-input-icon__icon m-input-icon__icon--right">
+                                                <span>
+                                                    <i class="la la-map-marker"></i>
+                                                </span>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="">
+                                            Address Line 2
+                                        </label>
+                                        <div class="m-input-icon m-input-icon--right">
+                                            <input class="form-control m-input" name="name" [disabled]="isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="projectInfo.address.address2"
+                                                id="name" type="text">
+                                            <span class="m-input-icon__icon m-input-icon__icon--right">
+                                                <span>
+                                                    <i class="la la-map-marker"></i>
+                                                </span>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 form-group m-form__group row">
+                                    <div class="col-lg-6">
+                                        <label>
+                                            City:
+                                        </label>
+                                        <div class="m-input-icon m-input-icon--right">
+                                            <input class="form-control m-input" name="name" [disabled]="isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="projectInfo.address.city"
+                                                id="name" type="text">
+                                            <span class="m-input-icon__icon m-input-icon__icon--right">
+                                                <span>
+                                                    <i class="la la-map-marker"></i>
+                                                </span>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="">
+                                            State / Province / Region:
+                                        </label>
+                                        <div class="m-input-icon m-input-icon--right">
+                                            <input class="form-control m-input" name="name" [disabled]="isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="projectInfo.address.state"
+                                                id="name" type="text">
+                                            <span class="m-input-icon__icon m-input-icon__icon--right">
+                                                <span>
+                                                    <i class="la la-map-marker"></i>
+                                                </span>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 form-group m-form__group row">
+                                    <div class="col-lg-6">
+                                        <label>
+                                            Zip / Postal Code:
+                                        </label>
+                                        <div class="m-input-icon m-input-icon--right">
+                                            <input class="form-control m-input" name="name" [disabled]="isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="projectInfo.address.zip"
+                                                id="name" type="text">
+                                            <span class="m-input-icon__icon m-input-icon__icon--right">
+                                                <span>
+                                                    <i class="la la-map-marker"></i>
+                                                </span>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="">
+                                            Country:
+                                        </label>
+                                        <div class="m-input-icon m-input-icon--right">
+                                            <input class="form-control m-input" name="name" [disabled]="isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="projectInfo.address.country"
+                                                id="name" type="text">
+                                            <span class="m-input-icon__icon m-input-icon__icon--right">
+                                                <span>
+                                                    <i class="la la-map-marker"></i>
+                                                </span>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group m-form__group col-lg-4">
+                                <label>
+                                    Sight Type
+                                </label>
+
+                                <select class="custom-select form-control" name="stau" [disabled]="isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="projectInfo.sightType">
+                                    <option value="self">
+                                        Self
+                                    </option>
+                                    <option value="subcontract">
+                                        Subcontract
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group m-form__group col-lg-4" [hidden]="!(projectInfo.sightType == 'Subcontract')">
+                                <label>
+                                    Subcontract Name
+                                </label>
+
+                                <input class="form-control m-input" name="name" [disabled]="isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="projectInfo.subcontractor"
+                                    id="name" type="text">
+                            </div>
+                            <div class="form-group m-form__group col-lg-4">
+                                <label>
+                                    Employee Type
+                                </label>
+
+                                <select class="custom-select form-control" name="stau" [disabled]="isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="projectInfo.employeeType">
+                                    <option value="self">
+                                        Self
+                                    </option>
+                                    <option value="subcontract">
+                                        Subcontract
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group m-form__group col-lg-4">
+                                <label>
+                                    Employee Name
+                                </label>
+                                <br>
+                                <p-multiSelect [options]="employeeList"></p-multiSelect>
+                            </div>
+                            <div class="form-group m-form__group col-lg-4">
+                                <label>
+                                    Project Cost: 
+                                </label>
+
+                                <b>{{projectInfo.cost|currency}}</b>
+                            </div>
+                            <div class="form-group m-form__group col-lg-4">
+                                <label>
+                                    Project Manager
+                                </label>
+                                <br>
+                                <p-multiSelect [options]="employeeList"></p-multiSelect>
+                            </div>
+                            <div class="form-group m-form__group col-lg-4">
+                                <label>
+                                    Start Date
+                                </label>
+
+                                <input class="form-control m-input" name="name" [disabled]="isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="projectInfo.startDate"
+                                    id="name" type="date">
+                            </div>
+
+                            <!-- <div class="form-group m-form__group col-lg-12">
+                                <label>
+                                    Comments
+                                </label>
+                                
+                                <textarea class="form-control m-input" cols="30" rows="3" name="comment" [disabled]="isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="projectInfo.comment"></textarea>
+
+                            </div> -->
+                            <br>
+                            <div class="m-portlet__foot m-portlet__foot--fit col-lg-12">
+                                <div class="m-form__actions">
+                                    <button type="reset" class="btn btn-primary" (click)="submit()">
+                                        Submit
+                                    </button>
+                                    <button type="reset" class="btn btn-primary" (click)="cancel()">
+                                        Cancel
+                                    </button>
+                                    <button type="reset" class="btn btn-primary" (click)="next()">
+                                        Next
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="col-xl-12" [hidden]="!jobPrestart">
+                <br>
+                <br>
+                <div class="col-xl-12">
+                    <h3 class="first">Upload Project Document</h3>
+                </div>
+                <br>
+                <div class="col-xl-4">
+                    <label>SWMS</label>
+                </div>
+                <div class="col-xl-6">
+                    <p-fileUpload name="demo[]" (onUpload)="onUpload($event)" multiple="multiple" accept="application/pdf,application/vnd.ms-excel,application/vnd.ms-powerpoint,application/msword">
+                        <ng-template pTemplate="content">
+                            <ul *ngIf="uploadedFiles.length">
+                                <li *ngFor="let file of uploadedFiles">{{file.name}}</li>
+                            </ul>
+                        </ng-template>
+                    </p-fileUpload>
+                </div>
+                <br>
+                <div class="col-xl-4">
+                    <label>SDS</label>
+                </div>
+                <div class="col-xl-6">
+                    <p-fileUpload name="demo[]" (onUpload)="onUpload($event)" multiple="multiple" accept="application/pdf,application/vnd.ms-excel,application/vnd.ms-powerpoint,application/msword">
+                        <ng-template pTemplate="content">
+                            <ul *ngIf="uploadedFiles.length">
+                                <li *ngFor="let file of uploadedFiles">{{file.name}}</li>
+                            </ul>
+                        </ng-template>
+                    </p-fileUpload>
+                </div>
+                <hr>
+                <div class="col-xl-4">
+                    <label>DRAWINGS</label>
+                </div>
+                <div class="col-xl-6">
+                    <p-fileUpload name="demo[]" (onUpload)="onUpload($event)" multiple="multiple" accept="application/pdf,application/vnd.ms-excel,application/vnd.ms-powerpoint,application/msword">
+                        <ng-template pTemplate="content">
+                            <ul *ngIf="uploadedFiles.length">
+                                <li *ngFor="let file of uploadedFiles">{{file.name}}</li>
+                            </ul>
+                        </ng-template>
+                    </p-fileUpload>
+                </div>
+                <br>
+                <div class="col-xl-4">
+                    <label>FINISHES</label>
+                </div>
+                <div class="col-xl-6">
+                    <p-fileUpload name="demo[]" (onUpload)="onUpload($event)" multiple="multiple" accept="application/pdf,application/vnd.ms-excel,application/vnd.ms-powerpoint,application/msword">
+                        <ng-template pTemplate="content">
+                            <ul *ngIf="uploadedFiles.length">
+                                <li *ngFor="let file of uploadedFiles">{{file.name}}</li>
+                            </ul>
+                        </ng-template>
+                    </p-fileUpload>
+                </div>
+                <hr>
+                <div class="col-xl-4">
+                    <label>RISK ASSESMENT</label>
+                </div>
+                <div class="col-xl-6">
+                    <p-fileUpload name="demo[]" (onUpload)="onUpload($event)" multiple="multiple" accept="application/pdf,application/vnd.ms-excel,application/vnd.ms-powerpoint,application/msword">
+                        <ng-template pTemplate="content">
+                            <ul *ngIf="uploadedFiles.length">
+                                <li *ngFor="let file of uploadedFiles">{{file.name}}</li>
+                            </ul>
+                        </ng-template>
+                    </p-fileUpload>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>

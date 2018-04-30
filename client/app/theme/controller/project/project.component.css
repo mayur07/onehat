@@ -1,0 +1,21 @@
+.width25{
+    width: 25%;
+}
+.ql-editor{
+    background: white;
+}
+.ui-steps .ui-steps-item {
+    width: 25%;
+}
+.Success, .Complete{
+    background-color: #34bfa3;
+    color: #fff;
+}
+.Reject, .Incomplete{
+    background-color: #f4516c;
+    color: #fff;
+}
+.ui-multiselect{
+    width: 100%;
+    height: 48%;
+}

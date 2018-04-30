@@ -1,0 +1,293 @@
+<!-- BEGIN: Left Aside -->
+<!-- BEGIN: Left Aside -->
+
+<div class="m-subheader" appunwraptag="">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h3 class="m-subheader__title">
+                Quote Details
+            </h3>
+        </div>
+
+    </div>
+</div>
+<div class="m-content">
+    <div class="row">
+        <div class="m-portlet">
+            <div class="col-xl-12">
+
+                <div class="col-xl-12" [hidden]="quoteFormActive">
+                    <br>
+                    <button id="m_login_signin_submit" (click)="quoteFormActive=true" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
+                        Add Quote
+                    </button>
+                    <br>
+                    <br>
+                </div>
+
+                <div class="col-xl-12">
+                    <div class="m-grid__item m-grid__item--fluid m-wrapper quotes" [hidden]="quoteFormActive">
+                        <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+                            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                            <input #gb type="text" pInputText size="50" placeholder="Global Filter">
+                        </div>
+                        <p-dataTable [value]="quotes" selectionMode="single" [(selection)]="selectedQuote" [globalFilter]="gb" (onRowDblclick)="onRowDblclick()"
+                            [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
+
+                            <p-column field="name" header="Name"></p-column>
+                            <p-column field="outcome" header="Status">
+                                <ng-template let-col let-quote="rowData" pTemplate="body">
+                                    <span class="m-badge m-badge--wide {{quote.outcome}}">{{quote.outcome}}</span>
+                                </ng-template>
+                            </p-column>
+                            <p-column field="date" header="Quote Date">
+                                <ng-template let-col let-quote="rowData" pTemplate="body">
+                                    <span>{{quote.date | date:'dd/MM/yyyy'}}</span>
+                                </ng-template>
+                            </p-column>
+                            <p-column header="">
+                                <ng-template let-col let-quote="rowData" pTemplate="body">
+                                    <span style="overflow: visible; width: 110px;">
+                                        <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details" (click)="onRowDblclick(quote)">
+                                            <i class="la la-edit"></i>
+                                        </a>
+                                        <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Delete">
+                                            <i class="la la-trash"></i>
+                                        </a>
+                                    </span>
+                                </ng-template>
+                            </p-column>
+
+                            <!-- <p-column field="comments" header="Comment"></p-column> -->
+                        </p-dataTable>
+                    </div>
+                </div>
+                <div [hidden]="!quoteFormActive">
+                    <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
+                        <div class="m-portlet__body">
+                            <div class="form-group m-form__group row">
+
+                                <div class="form-group m-form__group col-lg-4">
+                                    <label>
+                                        Quote
+                                    </label>
+                                    <div></div>
+                                    <input aria-describedby="no" class="form-control m-input" name="name" [(ngModel)]="quoteInfo.name" id="name" type="text">
+                                </div>
+                                <div class="form-group m-form__group col-lg-4">
+                                    <label>
+                                        Date
+                                    </label>
+                                    <div></div>
+                                    <input aria-describedby="no" class="form-control m-input" name="date" [ngModel]="quoteInfo.date | date:'yyyy-MM-dd'" (ngModelChange)="quoteInfo.date = $event"
+                                        id="name" type="date">
+                                </div>
+                                <div class="form-group m-form__group col-lg-4">
+                                    <label>
+                                        Outcome
+                                    </label>
+                                    <div></div>
+                                    <select class="custom-select form-control" name="stau" [(ngModel)]="quoteInfo.outcome">
+
+                                        <option value="Success">
+                                            Success
+                                        </option>
+                                        <option value="Reject">
+                                            Reject
+                                        </option>
+
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group m-form__group col-lg-12">
+                                    <label>
+                                        Comments
+                                    </label>
+                                    <div></div>
+                                    <textarea class="form-control m-input" cols="30" rows="3" name="comment" [(ngModel)]="quoteInfo.comment"></textarea>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                    <br>
+                    <br>
+
+                    <div class="docForm" #docForm style="border: solid 1px; padding: 12px">
+
+                        <p>
+                            <input aria-describedby="no" style="width: 25%" class="form-control m-input" placeholder="enter date" name="date" [ngModel]="quoteInfo.date | date:'yyyy-MM-dd'"
+                                (ngModelChange)="quoteInfo.date = $event" id="name" type="date">
+                        </p>
+                        <p>
+                            <input aria-describedby="no" class="form-control m-input" name="tender" [(ngModel)]="quoteInfo.tender" id="name" type="text"
+                                placeholder="eg. Tendering Head Contractors" class="width25">
+                        </p>
+                        <strong>To whom it may concern</strong>
+                        <p>
+                            <span>
+                                <input aria-describedby="no" class="form-control m-input" name="name" [(ngModel)]="quoteInfo.name" id="name" type="text"
+                                    placeholder="eg. RE: Bunnings Virginia" class="width25"> </span>
+
+                            <p>
+                                <p-editor name="detail" [(ngModel)]="quoteInfo.details" [style]="{'height':'200px'}"></p-editor>
+                            </p>
+
+
+                            <p>
+                                <p-editor name="resaon" [(ngModel)]="quoteInfo.quoteReason" [style]="{'height':'200px'}"></p-editor>
+                            </p>
+
+                            <p>
+
+                                <p-editor name="scopedetail" [(ngModel)]="quoteInfo.scopeDetail" [style]="{'height':'200px'}"></p-editor>
+                            </p>
+
+                            <p>
+
+                                <p-editor name="extsub" [(ngModel)]="quoteInfo.externalSubstrate" [style]="{'height':'200px'}"></p-editor>
+                            </p>
+                            <p>
+
+                                <p-editor name="intsub" [(ngModel)]="quoteInfo.internalSubstrate" [style]="{'height':'200px'}"></p-editor>
+                                <strong>
+                                    <u>&nbsp;</u>
+                                </strong>
+                            </p>
+                            <p>
+                                <strong>
+                                    <u>PRICE BREAKDOWN</u>
+                                </strong>
+                            </p>
+                            <table width="733">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="6" width="460">
+                                            <p>All works in accordance with Drawings &amp;&nbsp; Specification supplied</p>
+                                        </td>
+                                        <td width="77">&nbsp;</td>
+                                        <td colspan="3" width="89">&nbsp;</td>
+                                        <td colspan="2" width="91">&nbsp;</td>
+                                        <td width="16">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="234">&nbsp;</td>
+                                        <td width="45">&nbsp;</td>
+                                        <td width="45">&nbsp;</td>
+                                        <td width="45">&nbsp;</td>
+                                        <td width="45">&nbsp;</td>
+                                        <td width="45">&nbsp;</td>
+                                        <td width="77">&nbsp;</td>
+                                        <td colspan="3" width="89">&nbsp;</td>
+                                        <td colspan="2" width="91">&nbsp;</td>
+                                        <td width="16">&nbsp;</td>
+                                    </tr>
+
+
+                                    <tr *ngFor="let cost of quoteInfo.cost ; let i = index">
+                                        <td colspan="4" width="370">
+                                            <p>
+                                                <input type="text" name="cost" style="width: 60%" [(ngModel)]="cost.heading">
+                                            </p>
+                                        </td>
+                                        <td width="45">&nbsp;</td>
+                                        <td width="45">&nbsp;</td>
+                                        <td width="77">&nbsp;</td>
+                                        <td width="19">&nbsp;</td>
+                                        <td width="19">&nbsp;</td>
+                                        <td colspan="2" width="103">
+                                            <div class="ui-inputgroup">
+                                                <span class="ui-inputgroup-addon">$</span>
+                                                <input type="text" name="cost" [(ngModel)]="cost.cost" pInputText placeholder="Price" style="width: 70%" (change)="costChange()">
+                                            </div>
+                                        </td>
+                                        <td colspan="2" width="54">
+                                            <p>&nbsp;</p>
+                                        </td>
+                                        <td>
+                                            <!-- <a class="btn btn-success m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill" href="#" ng-reflect-href="#">
+                                                <i class="la la-plus"></i>
+                                            </a> -->
+                                            <a *ngIf="i==0" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" href="#"
+                                                ng-reflect-href="#" (click)="addCost()">
+                                                <i class="la la-plus"></i>
+                                            </a>
+                                            <a *ngIf="i!=0" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" href="#"
+                                                ng-reflect-href="#" (click)="removeCost(i)">
+                                                <i class="la la-remove"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="234">
+                                            <p>GST</p>
+                                        </td>
+                                        <td width="45">&nbsp;</td>
+                                        <td width="45">&nbsp;</td>
+                                        <td width="45">&nbsp;</td>
+                                        <td width="45">&nbsp;</td>
+                                        <td width="45">&nbsp;</td>
+                                        <td width="77">&nbsp;</td>
+                                        <td width="19">&nbsp;</td>
+                                        <td width="19">&nbsp;</td>
+                                        <td colspan="2" width="103">
+                                            <p>&nbsp;$ {{quoteInfo.gstCost}}
+                                            </p>
+                                        </td>
+                                        <td colspan="2" width="54">
+                                            <p>&nbsp;</p>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="234">
+                                            <p>Total</p>
+                                        </td>
+                                        <td width="45">&nbsp;</td>
+                                        <td width="45">&nbsp;</td>
+                                        <td width="45">&nbsp;</td>
+                                        <td width="45">&nbsp;</td>
+                                        <td width="45">&nbsp;</td>
+                                        <td width="77">&nbsp;</td>
+                                        <td width="19">&nbsp;</td>
+                                        <td width="19">&nbsp;</td>
+                                        <td colspan="2" width="103">
+                                            <p>$ {{quoteInfo.totalCost}}
+                                            </p>
+                                        </td>
+                                        <td colspan="2" width="54">
+                                            <p>&nbsp;</p>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+
+                            <div class="m-portlet__foot m-portlet__foot--fit">
+                                <div class="m-form__actions">
+                                    <button [disabled]="disableQuoteField" type="reset" class="btn btn-success" (click)="submit()">
+                                        Submit
+                                    </button>
+                                    <button [disabled]="disableQuoteField" type="reset" class="btn btn-primary" (click)="cancel()">
+                                        Cancel
+                                    </button>
+                                    <button [disabled]="disableQuoteField" type="reset" class="btn btn-danger" (click)="reset()">
+                                        Reset
+                                    </button>
+                                    <button [disabled]="disableQuoteField" type="reset" class="btn btn-focus" (click)="preview()">
+                                        Preview
+                                    </button>
+                                </div>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>
