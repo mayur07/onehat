@@ -12,9 +12,10 @@ export default class QuoteCtrl extends BaseCtrl {
     let docpath = __dirname.replace('\dist', '').replace('server', 'client').replace('controllers', 'assets');
     console.log(path.resolve(docpath, 'html.docx'));
     var converted = HtmlDocx.asBlob(req.body.html);
-    fs.writeFile(path.resolve(docpath, req.body.name + '.docx'), converted, function (err) {
+    let filename = req.body.name + '.docx';
+    fs.writeFile(path.resolve(docpath, filename), converted, function (err) {
       if (err) throw err;
     });
-    res.status(200).json(path.resolve(docpath, 'html.docx'));
+    res.status(200).json(path.resolve(docpath, filename));
   }
 }
