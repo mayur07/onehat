@@ -17,12 +17,16 @@ export class QuoteDocComponent implements OnInit {
     @ViewChild('downloadForm') el: ElementRef;
     constructor(private http: HttpClient, private _router: Router, private route: ActivatedRoute, private quoteService: QuoteService) { }
     ngOnInit() {
+        if (!this.quoteService.selectedQuote) {
+            this._router.navigate(['/quotes'], { relativeTo: this.route });
+            return;
+        }
         this.display = true;
         this.quote = this.quoteService.selectedQuote;
     }
     print() {
         debugger;
-        this.http.post('api/quote/saveDocx', { html: this.el.nativeElement['innerHTML'] }).subscribe((objecturl: string) => {
+        this.http.post('api/quote/saveDocx', { html: this.el.nativeElement['innerHTML'], name: this.quote.name }).subscribe((objecturl: string) => {
             debugger;
             let url = objecturl.replace('/app/client', '');
             window.open(url);

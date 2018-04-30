@@ -7,6 +7,7 @@ import { QuoteComponent } from './quote.component';
 import { QuoteDocComponent } from './quote-docx/quote-doc.component';
 import { DialogModule } from 'primeng/dialog';
 import { QuoteService } from './quote.service';
+import { AlertComponent } from '../alertbox/alert.component';
 
 const routes: Routes = [
     {
@@ -34,7 +35,7 @@ const routes: Routes = [
     ], exports: [
         RouterModule,
     ], declarations: [
-        QuoteComponent, QuoteDocComponent
+        QuoteComponent, QuoteDocComponent, AlertComponent
     ],
     providers: [QuoteService]
 })

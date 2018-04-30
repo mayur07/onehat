@@ -3,6 +3,8 @@ import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuoteModel } from "../../model/quote.model";
 import { QuoteService } from "./quote.service";
+import { AlertComponent } from "../alertbox/alert.component";
+
 
 
 @Component({
@@ -13,11 +15,14 @@ import { QuoteService } from "./quote.service";
 
 export class QuoteComponent implements OnInit {
     quotes = [];
+    alert = false;
     quoteFormActive = false;
     quoteInfo: QuoteModel;
     selectedQuote: any;
+    @ViewChild('alert') alertComp: AlertComponent;
     @ViewChild('docForm') el: ElementRef;
     disableQuoteField = false;
+    alertmessage = "Are You Sure!!";
     constructor(private http: HttpClient, private _router: Router, private route: ActivatedRoute, private quoteService: QuoteService) { }
     ngOnInit() {
         this.quoteInfo = new QuoteModel();
@@ -103,6 +108,10 @@ export class QuoteComponent implements OnInit {
         this.quoteFormActive = false;
     }
     reset() {
+        this.alertComp.show();
+
+    }
+    resetOk() {
         this.quoteInfo = new QuoteModel();
         this.quoteInfo.cost.push({ cost: 0, heading: '' });
     }

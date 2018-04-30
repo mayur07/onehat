@@ -6,9 +6,10 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import {StepsModule} from 'primeng/steps';
 import {FileUploadModule} from 'primeng/fileupload';
 
+
 @NgModule({
     declarations: [
-
+        
     ],
     exports: [
         DataTableModule,
@@ -16,7 +17,8 @@ import {FileUploadModule} from 'primeng/fileupload';
         FormsModule,
         MultiSelectModule,
         StepsModule,
-        FileUploadModule
+        FileUploadModule,
+        
     ],
     imports: [
         DataTableModule,
@@ -24,7 +26,8 @@ import {FileUploadModule} from 'primeng/fileupload';
         FormsModule,
         MultiSelectModule,
         StepsModule,
-        FileUploadModule
+        FileUploadModule,
+        
     ]
 })
 export class ControllerModule {
