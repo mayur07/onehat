@@ -47,7 +47,8 @@ export class ProjectComponent implements OnInit {
                     if (quotes[i]['outcome'] == 'Success') {
                         quotes[i]['projectStatus'] = 'Incomplete';
                         if (projects) {
-                            let pItem = projects.find(p => p['qid'] == quotes[i]['_id']);
+                            let pItem = projects.find(p => p['quoteId'] == quotes[i]['_id']);
+                            this.projectInfo = pItem;
                             if (pItem) {
                                 quotes[i]['projectStatus'] = 'Complete';
                             }

@@ -241,7 +241,7 @@
                                     Start Date
                                 </label>
 
-                                <input class="form-control m-input" name="name" [disabled]="isComplete" [ngModelOptions]="{standalone: true}" [(ngModel)]="projectInfo.startDate"
+                                <input class="form-control m-input" name="name" [disabled]="isComplete" [ngModelOptions]="{standalone: true}" [ngModel]="projectInfo.startDate | date:'yyyy-MM-dd'" (ngModelChange)="quoteInfo.date = $event"
                                     id="name" type="date">
                             </div>
 
