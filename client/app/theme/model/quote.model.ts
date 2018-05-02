@@ -7,8 +7,9 @@ export class QuoteModel {
     gstCost?: number;
     totalCost?: number;
     outcome: string;
-    tender?: string=``;
-    details?: string=`<p>On behalf of All Paint and Coatings (APC) I am pleased to submit the following quotation for your perusal.&nbsp;</p>
+    email: string;
+    tender?: string = ``;
+    details?: string = `<p>On behalf of All Paint and Coatings (APC) I am pleased to submit the following quotation for your perusal.&nbsp;</p>
     <p>APC is a locally owned and operated Painting and Decorating contractor who has been working in the Building &amp; Construction industry for over 35 years. We take pride in our work, as well as the responsibility of protecting your asset from future elements.&nbsp;</p>
     <p>Below are just some of the reasons why we feel you should choose APC for your upcoming Painting project;</p>`;
     quoteReason?: string = `<p><span style="font-family: 'times new roman', times;"><strong><u>WHY All Paint &amp; Coatings?</u></strong></span></p>

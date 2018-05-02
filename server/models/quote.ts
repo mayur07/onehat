@@ -14,6 +14,7 @@ const quoteSchema = new mongoose.Schema({
     }],
     totalCost: Number,
     tender: String,
+    email: String,
     details: String,
     gstCost: Number,
     quoteReason: String,

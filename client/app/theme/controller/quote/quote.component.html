@@ -99,9 +99,15 @@
 
                                     </select>
                                 </div>
+                                <div class="form-group m-form__group col-lg-4">
+                                    <label>
+                                        Email
+                                    </label>
+                                    <div></div>
+                                    <input aria-describedby="no" class="form-control m-input" name="email" [(ngModel)]="quoteInfo.email" id="email" type="email">
+                                </div>
 
-
-                                <div class="form-group m-form__group col-lg-12">
+                                <div class="form-group m-form__group col-lg-8">
                                     <label>
                                         Comments
                                     </label>
@@ -221,7 +227,27 @@
                                             </a>
                                         </td>
                                     </tr>
-
+                                    <tr>
+                                        <td width="234">
+                                            <p>Total for supply of material & labour</p>
+                                        </td>
+                                        <td width="45">&nbsp;</td>
+                                        <td width="45">&nbsp;</td>
+                                        <td width="45">&nbsp;</td>
+                                        <td width="45">&nbsp;</td>
+                                        <td width="45">&nbsp;</td>
+                                        <td width="77">&nbsp;</td>
+                                        <td width="19">&nbsp;</td>
+                                        <td width="15">&nbsp;</td>
+                                        <td width="10">&nbsp;</td>
+                                        <td colspan="2" width="103">
+                                            <p>&nbsp;$ {{quoteInfo.gstCost * 10}}
+                                            </p>
+                                        </td>
+                                        <td colspan="2" width="54">
+                                            <p>&nbsp;</p>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td width="234">
                                             <p>GST</p>
@@ -284,6 +310,14 @@
                                     <button [disabled]="disableQuoteField" type="reset" class="btn btn-focus" (click)="preview()">
                                         Preview
                                     </button>
+                                    <a class="btn btn-outline-warning m-btn m-btn--icon m-btn--outline-2x pull-right" href="#" (click)="emailQuote()">
+                                        <span>
+                                            <i class="la la-envelope"></i>
+                                            <span>
+                                                Share
+                                            </span>
+                                        </span>
+                                    </a>
                                 </div>
                             </div>
 
@@ -294,4 +328,27 @@
     </div>
 </div>
 <alert-box #alert [message]="alertmessage" (onSubmit)="resetOk($event)"></alert-box>
+<p-dialog header="Send To" [(visible)]="emailModal" [width]="450">
+    <div class="ui-g" *ngFor="let email of emailList ; let i = index" style="padding: 0.5em">
+        <div class="col-lg-8">
+            <input class="form-control m-input" type="text" name="elist" [(ngModel)]="emailList[i]">
+        </div>
+        <div class="col-lg-4">
+            <a *ngIf="i==0" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" href="#"
+                ng-reflect-href="#" (click)="addemail()">
+                <i class="la la-plus"></i>
+            </a>
+            <a *ngIf="i!=0" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" href="#"
+                ng-reflect-href="#" (click)="removeemail(i)">
+                <i class="la la-remove"></i>
+            </a>
+        </div>
+    </div>
+
+    <span style="color: rgb(146, 31, 31)" [hidden]="emailList.length > 0">Mail Send Succesfully!!</span>
+    <p-footer>
+        <button type="button" pButton icon="fa-check" (click)="sendEmail()" label="Send"></button>
+        <button type="button" pButton icon="fa-close" (click)="emailModal=false" label="Cancel"></button>
+    </p-footer>
+</p-dialog>
 <router-outlet></router-outlet>

@@ -19,10 +19,12 @@ export class QuoteComponent implements OnInit {
     quoteFormActive = false;
     quoteInfo: QuoteModel;
     selectedQuote: any;
+    emailList: string[] = [];
     @ViewChild('alert') alertComp: AlertComponent;
     @ViewChild('docForm') el: ElementRef;
     disableQuoteField = false;
     alertmessage = "Are You Sure!!";
+    emailModal = false;
     constructor(private http: HttpClient, private _router: Router, private route: ActivatedRoute, private quoteService: QuoteService) { }
     ngOnInit() {
         this.quoteInfo = new QuoteModel();
@@ -44,6 +46,12 @@ export class QuoteComponent implements OnInit {
         this._router.navigate(['/quotes/quotedoc'], { relativeTo: this.route });
 
     }
+    addemail() {
+        this.emailList.push('');
+    }
+    removeemail(index) {
+        this.emailList.splice(index, 1);
+    }
     addCost() {
         this.quoteInfo.cost.push({ cost: 0, heading: '' });
     }
@@ -59,6 +67,15 @@ export class QuoteComponent implements OnInit {
             this.quoteInfo.gstCost = totalAmnt / 10;
             this.quoteInfo.totalCost = Number(totalAmnt) + this.quoteInfo.gstCost;
         }
+    }
+    emailQuote() {
+        this.emailModal = true;
+        this.emailList.push(this.quoteInfo.email);
+    }
+    sendEmail() {
+        setTimeout(() => {
+            this.emailList = [];
+        }, 1000);
     }
     onRowDblclick(quote) {
         if (quote) {
