@@ -46,7 +46,7 @@
                     </p-dataTable>
                 </div>
             </div>
-            <div class="col-xl-12" [hidden]="!projectForm">
+            <div class="col-xl-12" *ngIf="projectForm">
                 <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" name="project_form">
                     <div class="m-portlet__body">
                         <div class="form-group m-form__group row">

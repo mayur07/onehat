@@ -146,6 +146,7 @@ export class ProjectComponent implements OnInit {
     }
 
     onRowDblclick(quote) {
+        this.projectInfo = new projectModel();
         if (quote) {
             this.selectedQuote = quote;
         } else {
