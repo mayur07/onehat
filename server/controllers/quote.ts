@@ -17,6 +17,7 @@ export default class QuoteCtrl extends BaseCtrl {
     let pdfoptions = { format: 'Letter' };
     fs.writeFile(path.resolve(docpath, filename + '.docx'), converted, function (err) {
       if (err) throw err;
+      res.status(200).json(path.resolve(docpath, filename + '.docx'));
       pdf.create(req.body.html, pdfoptions).toFile(path.resolve(docpath, filename + '.pdf'), function (err, res) {
         if (err) return console.log(err);
         console.log(res); // { filename: '/app/businesscard.pdf' }
