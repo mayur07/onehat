@@ -45,7 +45,7 @@ abstract class BaseCtrl {
   update = (req, res) => {
     this.model.findOneAndUpdate({ _id: req.params.id }, req.body, (err) => {
       if (err) { return console.error(err); }
-      res.sendStatus(200);
+      res.status(200).json('updated');
     });
   }
 

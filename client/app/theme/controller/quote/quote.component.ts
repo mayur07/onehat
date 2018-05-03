@@ -18,6 +18,7 @@ export class QuoteComponent implements OnInit {
     alert = false;
     quoteFormActive = false;
     quoteInfo: QuoteModel;
+    quoteReady = false;
     selectedQuote: any;
     emailList: string[] = [];
     @ViewChild('alert') alertComp: AlertComponent;
@@ -25,8 +26,10 @@ export class QuoteComponent implements OnInit {
     disableQuoteField = false;
     alertmessage = "Are You Sure!!";
     emailModal = false;
+    loadingDT = false;
     constructor(private http: HttpClient, private _router: Router, private route: ActivatedRoute, private quoteService: QuoteService) { }
     ngOnInit() {
+        this.loadingDT = true;
         this.quoteInfo = new QuoteModel();
         this.quoteInfo.cost.push({ cost: 0, heading: '' });
         //this.quotes = this.getData();
@@ -37,6 +40,7 @@ export class QuoteComponent implements OnInit {
                 this.quotes.push(quotes[i]);
             }
             this.quotes = quotes;
+            this.loadingDT = false;
         });
     }
     preview() {
@@ -77,6 +81,12 @@ export class QuoteComponent implements OnInit {
             this.emailList = [];
         }, 1000);
     }
+    addQuote() {
+        this.quoteFormActive = true;
+        this.quoteReady = false;
+        this.selectedQuote = null;
+        this.resetOk();
+    }
     onRowDblclick(quote) {
         if (quote) {
             this.selectedQuote = quote;
@@ -84,6 +94,7 @@ export class QuoteComponent implements OnInit {
             quote = this.selectedQuote;
         }
         this.quoteService.selectedQuote = quote;
+        this.quoteReady = true;
         if (this.selectedQuote['status'] !== 'Complete') {
             this.quoteInfo = this.selectedQuote;
             this.quoteFormActive = true;
@@ -91,6 +102,12 @@ export class QuoteComponent implements OnInit {
             return;
         }
         this.disableQuoteField = true;
+    }
+    statusChange(status, quote) {
+        this.loadingDT = true;
+        this.quoteInfo = quote;
+        this.quoteInfo.outcome = status;
+        this.submit();
     }
     submit() {
         // var blob = new Blob([this.el.nativeElement.innerHTML], { type: 'text/csv' });
@@ -106,6 +123,7 @@ export class QuoteComponent implements OnInit {
                     console.log('quote update......', data);
                     this.ngOnInit();
                     this.quoteFormActive = false;
+                    this.loadingDT = false;
                 });
             } else {
                 this.http.post(url, data).subscribe(data => {
@@ -119,6 +137,7 @@ export class QuoteComponent implements OnInit {
         }
         catch (e) {
             this.quoteFormActive = false;
+            this.loadingDT = false;
         }
     }
     cancel() {
