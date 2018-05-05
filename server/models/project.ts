@@ -21,7 +21,7 @@ const projectSchema = new mongoose.Schema({
     employees: [String],
     cost: String,
     manager: String,
-    startDate: Date,
+    startDate: { type: Date, default: Date.now },
     status:String,
     subcontractor:String,
 
