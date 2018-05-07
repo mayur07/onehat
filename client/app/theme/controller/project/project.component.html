@@ -397,121 +397,54 @@
                 </form>
             </div>
             <div class="col-xl-12" [hidden]="!step3_budget">
-                <div class="m-portlet__body">
-                    <div class="m-section">
+                <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" name="project_form">
+                    <div class="m-portlet__body">
+                        <div class="m-section">
 
-                        <div class="m-section__content">
-                            <strong>Budget</strong>
-                            <a class="pull-right btn btn-danger m-btn m-btn--icon btn-lg m-btn--icon-only m-btn--pill" href="#" (click)="addBudget()"
-                                style="margin-bottom: 2%;
+                            <div class="m-section__content">
+                                <strong>Budget</strong>
+                                <a class="pull-right btn btn-danger m-btn m-btn--icon btn-lg m-btn--icon-only m-btn--pill" href="#" (click)="addBudget()"
+                                    style="margin-bottom: 2%;
                             ">
-                                <i class="la la-plus"></i>
-                            </a>
-                            <div class="table-responsive">
-                                <table class="table m-table  m-table--head-bg-success">
-                                    <thead>
-                                        <tr>
-
-                                            <th>
-                                                Location Code
-                                            </th>
-                                            <th>
-                                                Location
-                                            </th>
-                                            <th>
-                                                SQMHR
-                                            </th>
-                                            <th>
-                                                Rate
-                                            </th>
-                                            <th>
-                                                Material
-                                            </th>
-                                            <th>
-                                                Price
-                                            </th>
-                                            <th>
-                                                Percentage %
-                                            </th>
-                                            <th>
-                                                Total Outlay
-                                            </th>
-                                            <th>
-                                                Expected Profit
-                                            </th>
-                                            <th>
-                                                SQMHR
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let item of budgetList">
-                                            <td>
-                                                <input class="form-control m-input" type="text">
-                                            </td>
-                                            <td>
-                                                <input class="form-control m-input" type="text">
-                                            </td>
-                                            <td>
-                                                <input class="form-control m-input" type="text">
-                                            </td>
-                                            <td>
-                                                <input class="form-control m-input" type="text">
-                                            </td>
-                                            <td>
-                                                <input class="form-control m-input" type="text">
-                                            </td>
-                                            <td>
-                                                <input class="form-control m-input" type="text">
-                                            </td>
-                                            <td>
-                                                <input class="form-control m-input" type="text">
-                                            </td>
-                                            <td>
-                                                <input class="form-control m-input" type="text">
-                                            </td>
-                                            <td>
-                                                <input class="form-control m-input" type="text">
-                                            </td>
-                                            <td>
-                                                <input class="form-control m-input" type="text">
-                                            </td>
-
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="m-section__content">
-                            <div class="col-xl-9">
-<strong>Actual</strong><br><br>
-                                
+                                    <i class="la la-plus"></i>
+                                </a>
                                 <div class="table-responsive">
-                                    <table class="table m-table  m-table--head-bg-success table-sm">
+                                    <table class="table m-table  m-table--head-bg-success">
                                         <thead>
                                             <tr>
 
                                                 <th>
-                                                    Code
+                                                    Location Code
                                                 </th>
                                                 <th>
                                                     Location
                                                 </th>
                                                 <th>
-                                                    Price of the Project
+                                                    SQMHR
                                                 </th>
                                                 <th>
-                                                    Cost to Company
+                                                    Rate
                                                 </th>
                                                 <th>
-                                                    Net Profit
+                                                    Material
+                                                </th>
+                                                <th>
+                                                    Price
+                                                </th>
+                                                <th>
+                                                    Percentage %
+                                                </th>
+                                                <th>
+                                                    Total Outlay
+                                                </th>
+                                                <th>
+                                                    Expected Profit
                                                 </th>
 
                                             </tr>
                                         </thead>
-                                        <tbody *ngIf="selectedQuote">
-                                            <tr *ngFor="let c of selectedQuote.cost">
+                                        <tbody>
+                                            <tr *ngFor="let item of budgetList">
                                                 <td>
                                                     <input class="form-control m-input" type="text">
                                                 </td>
@@ -519,8 +452,324 @@
                                                     <input class="form-control m-input" type="text">
                                                 </td>
                                                 <td>
-                                                    <input class="form-control m-input" [ngModel]="c.cost" type="text">
+                                                    <input class="form-control m-input" type="text">
                                                 </td>
+                                                <td>
+                                                    <input class="form-control m-input" type="text">
+                                                </td>
+                                                <td>
+                                                    <input class="form-control m-input" type="text">
+                                                </td>
+                                                <td>
+                                                    <input class="form-control m-input" type="text">
+                                                </td>
+                                                <td>
+                                                    <input class="form-control m-input" type="text">
+                                                </td>
+                                                <td>
+                                                    <input class="form-control m-input" type="text">
+                                                </td>
+                                                <td>
+                                                    <input class="form-control m-input" type="text">
+                                                </td>
+
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="m-section__content">
+                                <div class="col-xl-9">
+                                    <strong>Actual</strong>
+                                    <br>
+                                    <br>
+
+                                    <div class="table-responsive">
+                                        <table class="table m-table  m-table--head-bg-success table-sm">
+                                            <thead>
+                                                <tr>
+
+                                                    <th>
+                                                        Code
+                                                    </th>
+                                                    <th>
+                                                        Location
+                                                    </th>
+                                                    <th>
+                                                        Price of the Project
+                                                    </th>
+                                                    <th>
+                                                        Cost to Company
+                                                    </th>
+                                                    <th>
+                                                        Net Profit
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody *ngIf="selectedQuote">
+                                                <tr *ngFor="let c of selectedQuote.cost">
+                                                    <td>
+                                                        <input class="form-control m-input" type="text">
+                                                    </td>
+                                                    <td>
+                                                        <input class="form-control m-input" type="text">
+                                                    </td>
+                                                    <td>
+                                                        <input class="form-control m-input" [ngModel]="c.cost" type="text">
+                                                    </td>
+                                                    <td>
+                                                        <input class="form-control m-input" type="text">
+                                                    </td>
+                                                    <td>
+                                                        <input class="form-control m-input" type="text">
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="m-portlet__foot m-portlet__foot--fit col-lg-12">
+                            <div class="m-form__actions">
+
+                                <a class="btn btn-danger m-btn m-btn--custom m-btn--icon" href="#" (click)="cancel()">
+                                    <span>
+                                        <span>
+                                            Cancel
+                                        </span>
+
+                                    </span>
+                                </a>
+                                <a class="btn btn-warning m-btn m-btn--custom m-btn--icon pull-right" href="#" (click)="next(3)">
+                                    <span>
+                                        <span>
+                                            Save &amp; Continue
+                                        </span>
+                                        &nbsp;&nbsp;
+                                        <i class="la la-arrow-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-xl-12" [hidden]="!step4_variations">
+
+                <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
+                    <div class="m-portlet__body">
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-2 col-form-label">
+                                Defect Id:
+                            </label>
+                            <div class="col-lg-3">
+
+                                <strong>0256558</strong>
+
+
+
+                            </div>
+                            <label class="col-lg-2 col-form-label">
+                                Defect Date:
+                            </label>
+                            <div class="col-lg-3">
+                                <strong [innerHtml]="today | date : 'dd/MM/yyyy'"></strong>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-2 col-form-label">
+                                Defect Snaps:
+                            </label>
+                            <div class="col-lg-3">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFile">
+                                    <label class="custom-file-label" for="customFile">
+                                        Choose file
+                                    </label>
+                                </div>
+                                <span class="m-form__help">
+                                    Upload Site images
+                                </span>
+                            </div>
+                            <label class="col-lg-2 col-form-label">
+                                Contractor Name:
+                            </label>
+                            <div class="col-lg-3">
+                                <input type="text" class="form-control m-input">
+
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-2 col-form-label">
+                                Contractor Sign:
+                            </label>
+                            <div class="col-lg-3">
+
+                                <input type="text" class="form-control m-input">
+
+
+
+                            </div>
+                            <label class="col-lg-2 col-form-label">
+                                Estimate:
+                            </label>
+                            <div class="col-lg-3">
+                                <input type="date" class="form-control m-input">
+
+                                <span class="m-form__help">
+                                    Estimation to complete defect
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-2 col-form-label">
+                                Approval:
+                            </label>
+                            <div class="col-lg-3">
+                                <div class="m-radio-inline">
+                                    <label class="m-radio m-radio--solid">
+                                        <input type="radio" name="approval" checked value="yes"> Yes
+                                    </label>
+                                    <label class="m-radio m-radio--solid">
+                                        <input type="radio" name="approval" value="no"> No
+                                    </label>
+                                </div>
+                            </div>
+                            <label class="col-lg-2 col-form-label">
+                                Approval Name:
+                            </label>
+                            <div class="col-lg-3">
+                                <input type="date" class="form-control m-input">
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+
+                        </div>
+                    </div>
+                    <div class="m-portlet__foot m-portlet__foot--fit col-lg-12">
+                        <div class="m-form__actions">
+
+                            <a class="btn btn-danger m-btn m-btn--custom m-btn--icon" href="#" (click)="cancel()">
+                                <span>
+                                    <span>
+                                        Cancel
+                                    </span>
+
+                                </span>
+                            </a>
+                            <a class="btn btn-warning m-btn m-btn--custom m-btn--icon pull-right" href="#" (click)="next(4)">
+                                <span>
+                                    <span>
+                                        Save &amp; Continue
+                                    </span>
+                                    &nbsp;&nbsp;
+                                    <i class="la la-arrow-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-xl-12 step5_material" [hidden]="!step5_material">
+                <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" name="project_form">
+                    <div class="m-portlet__body">
+                        <div class="m-section">
+                            <div class="m-section__content">
+                            </div>
+                        </div>
+                        <div class="m-section">
+                            <div class="m-section__content row">
+                                <div class="col-xl-6 row" style="max-height: 320px">
+                                    <div class="col-xl-6">
+                                        <div class="form-group m-form__group">
+                                            <label for="exampleSelect1">
+                                                Defect Id:
+                                            </label>
+                                            <br>
+                                            <strong>00215865478</strong>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="form-group m-form__group">
+                                            <label for="exampleSelect1">
+                                                Defect Date:
+                                            </label>
+                                            <strong [innerHtml]="today | date : 'dd/MM/yyyy'"></strong>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="form-group m-form__group">
+                                            <label for="exampleSelect1">
+                                                Expected Delivery Date
+                                            </label>
+                                            <input class="form-control m-input" type="date">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="form-group m-form__group">
+                                            <label for="exampleSelect1">
+                                                Order Requester
+                                            </label>
+                                            <input class="form-control m-input" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="form-group m-form__group">
+                                            <label for="exampleSelect1">
+                                                Select Supplier
+                                            </label>
+                                            <select class="form-control m-input" id="exampleSelect1">
+                                                <option>
+                                                    1
+                                                </option>
+                                                <option>
+                                                    2
+                                                </option>
+                                                <option>
+                                                    3
+                                                </option>
+                                                <option>
+                                                    4
+                                                </option>
+                                                <option>
+                                                    5
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6">
+
+                                    <div class="table-responsive">
+                                        <table class="table m-table m-table--head-bg-success">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        Material Name
+                                                    </th>
+                                                    <th>
+                                                        Quantity
+                                                        <a class="pull-right btn btn-success m-btn m-btn--icon btn-sm m-btn--icon-only m-btn--pill" href="#" (click)="addMaterial()">
+                                                            <i class="la la-plus"></i>
+                                                        </a>
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+                                            <tr *ngFor="let item of materialList">
                                                 <td>
                                                     <input class="form-control m-input" type="text">
                                                 </td>
@@ -528,20 +777,39 @@
                                                     <input class="form-control m-input" type="text">
                                                 </td>
                                             </tr>
-
-                                        </tbody>
-                                    </table>
-
+                                        </table>
+                                    </div>
                                 </div>
+
+
+
+
                             </div>
-                            
+                        </div>
+                        <div class="m-portlet__foot m-portlet__foot--fit col-lg-12">
+                            <div class="m-form__actions">
+
+                                <a class="btn btn-danger m-btn m-btn--custom m-btn--icon" href="#" (click)="cancel()">
+                                    <span>
+                                        <span>
+                                            Cancel
+                                        </span>
+
+                                    </span>
+                                </a>
+                                <a class="btn btn-warning m-btn m-btn--custom m-btn--icon pull-right" href="#" (click)="next(5)">
+                                    <span>
+                                        <span>
+                                            Save &amp; Continue
+                                        </span>
+                                        &nbsp;&nbsp;
+                                        <i class="la la-arrow-right"></i>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-
-
-
-                </div>
-
+                </form>
             </div>
         </div>
     </div>

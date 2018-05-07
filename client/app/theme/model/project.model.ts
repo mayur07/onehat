@@ -28,3 +28,16 @@ export class Address {
     zip: string = '';
     country: string = '';
 }
+
+export class MaterialOrderModel {
+    material: material;
+    supplier: string;
+    expectedDeliverydate: Date;
+    orderRequester: string;
+    defectId: string;
+}
+
+export class material {
+    name: string = '';
+    quantity: number = 0;
+}

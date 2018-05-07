@@ -56,20 +56,20 @@ export default class QuoteCtrl extends BaseCtrl {
     });
 
     // verify mail
-    // var mailOptions = {
-    //   from: "admin@1hat.com.au", // sender address
-    //   to: "mayur.mathurkar7@gmail.com", // list of receivers
-    //   subject: "Hello ✔", // Subject line
-    //   text: "Hello world ✔", // plaintext body
-    //   html: "<b>Hello world ✔</b>" // html body
-    // }
-    // smtpTransport.sendMail(mailOptions, function (error, response) {
-    //   if (error) {
-    //     console.log(error);
-    //   } else {
-    //     console.log("Message sent: " + response.message);
-    //   }
-    // });
+    var mailOptions = {
+      from: "admin@1hat.com.au", // sender address
+      to: "mayur.mathurkar7@gmail.com", // list of receivers
+      subject: "Hello ✔", // Subject line
+      text: "Hello world ✔", // plaintext body
+      html: "<b>Hello world ✔</b>" // html body
+    }
+    smtpTransport.sendMail(mailOptions, function (error, response) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Message sent: " + response.message);
+      }
+    });
 
   }
 

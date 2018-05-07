@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute, Router } from '@angular/router';
 import { SelectItem, MenuItem, Message } from 'primeng/api';
 import { QuoteModel } from "../../model/quote.model";
-import { projectModel, Address } from "../../model/project.model";
+import { projectModel, Address, MaterialOrderModel, material } from "../../model/project.model";
 
 @Component({
     templateUrl: 'project.component.html',
@@ -22,6 +22,8 @@ export class ProjectComponent implements OnInit {
     step1_projectform = false;
     step2_jobprestart = false;
     step3_budget = false;
+    step4_variations = false;
+    step5_material = false;
     isComplete = false;
     @ViewChild('docForm') el: ElementRef;
     projectTable = true;
@@ -30,12 +32,12 @@ export class ProjectComponent implements OnInit {
     msgs: Message[] = [];
     budgetList: any[] = [];
     activeIndex: number = 0;
-
-
+    materialList: material[]=[];
+    materialOrderList: MaterialOrderModel[];
     uploadedFiles: any[] = [];
-
+    today=Date.now();
     ngOnInit() {
-        
+
         this.selectedProject = new projectModel();
         this.selectedProject.address = new Address();
         this.setSteps();
@@ -112,6 +114,14 @@ export class ProjectComponent implements OnInit {
                 this.msgs.length = 0;
                 this.msgs.push({ severity: 'info', summary: 'Last Step', detail: event.item.label });
             }
+        },
+        {
+            label: 'Material Order',
+            command: (event: any) => {
+                this.activeIndex = 4;
+                this.msgs.length = 0;
+                this.msgs.push({ severity: 'info', summary: 'Last Step', detail: event.item.label });
+            }
         }
         ];
     }
@@ -131,20 +141,43 @@ export class ProjectComponent implements OnInit {
                 this.step1_projectform = false;
                 this.step2_jobprestart = true;
                 this.step3_budget = false;
+                this.step4_variations = false;
+                this.step5_material = false;
                 this.activeIndex = 1;
                 break;
             case 2:
                 this.step1_projectform = false;
                 this.step2_jobprestart = false;
                 this.step3_budget = true;
+                this.step4_variations = false;
+                this.step5_material = false;
                 this.activeIndex = 2;
                 this.addBudget();
                 break;
             case 3:
                 this.step1_projectform = false;
                 this.step2_jobprestart = false;
-                this.step3_budget = true;
+                this.step3_budget = false;
+                this.step4_variations = true;
+                this.step5_material = false;
                 this.activeIndex = 3;
+                break;
+            case 4:
+                this.step1_projectform = false;
+                this.step2_jobprestart = false;
+                this.step3_budget = false;
+                this.step4_variations = false;
+                this.step5_material = true;
+                this.activeIndex = 4;
+                this.addMaterial();
+                break;
+            case 5:
+                this.step1_projectform = false;
+                this.step2_jobprestart = false;
+                this.step3_budget = false;
+                this.step4_variations = false;
+                this.step5_material = false;
+                this.activeIndex = 5;
                 break;
             default:
                 break;
@@ -153,7 +186,12 @@ export class ProjectComponent implements OnInit {
         window.scrollTo(0, 0);
     }
 
-
+    addMaterial() {
+        this.materialList.push({ name: '', quantity: 0 });
+    }
+    addMaterialOrder() {
+        this.materialOrderList.push({ defectId: '001', material: new material(), orderRequester: '', supplier: '', expectedDeliverydate: <any>Date.now() });
+    }
     onUpload(event) {
         for (let file of event.files) {
             this.uploadedFiles.push(file);

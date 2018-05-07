@@ -5,7 +5,7 @@
     background: white;
 }
 .ui-steps .ui-steps-item {
-    width: 25%;
+    width: 20%;
 }
 .Success, .Complete{
     background-color: #34bfa3;
@@ -18,4 +18,8 @@
 .ui-multiselect{
     width: 100%;
     height: 48%;
+}
+.step5_material .btn-group-sm>.m-btn--icon.m-btn--icon-only.btn, .m-btn--icon.m-btn--icon-only.btn-sm{
+    height: 25px;
+    width: 25px;
 }
