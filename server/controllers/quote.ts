@@ -41,6 +41,7 @@ export default class QuoteCtrl extends BaseCtrl {
 
 
   getDocx = (req, res) => {
+    console.log("__dirname",__dirname);
     let docpath = __dirname.replace('\dist', '').replace('server', 'client').replace('controllers', 'assets');
     console.log(path.resolve(docpath, 'html.docx'));
     var converted = HtmlDocx.asBlob(req.body.html);
