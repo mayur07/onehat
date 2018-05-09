@@ -4,7 +4,7 @@ export class QuoteModel {
     date: Date;
     comment?: string;
     cost: Cost[] = [];
-    gstCost?: number;
+    gstCost?: number=0;
     totalCost?: number;
     outcome: string;
     email: string;
@@ -39,6 +39,8 @@ export class QuoteModel {
     <li style="line-height: normal; tab-stops: list 36.0pt;"><span style="font-family: 'times new roman', times;">Bollards</span></li>
     <li style="line-height: normal; tab-stops: list 36.0pt;"><span style="font-family: 'times new roman', times;">New tenancy works</span></li>
     </ul>`;
+    pricebreakdownHeading: string = 'All works in accordance with Drawings &  Specification supplied';
+    pricebreakdownFooter: string = 'Total for supply of material & labour';
     externalSubstrate?: string = `<p><strong><u>PREPARATION OF EXTERNAL SUBSTRATES:</u></strong><br /> All exposed areas will be broomed down to remove excess laitance from the surface. Prior to the application of any coatings, all surfaces will be double checked for any damage. If there is damage the site foreman will be notified.</p>`;
     internalSubstrate: string = `<p><strong><u>PREPARATION OF INTERNAL SUBSTRATES</u>:</strong>  <br /> All areas to be painted will be sanded and swept down to remove excess Latinate from the surface. Prior to the application of any final coatings, surfaces will be check for damage. If additional pre paint is required, the site foreman will be notified to contact the plasterer. Furthermore once final coats have been completed, the McNab site foreman will be notified to sign these areas off. Once the area has been signed off any damage after this period will constitute a variation for rectification. No allowance has been made to rectify poor skirting miters or frame miters due to back workmanship by the builder.</p>`;
 }

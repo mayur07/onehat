@@ -22,6 +22,8 @@ const quoteSchema = new mongoose.Schema({
     externalSubstrate: String,
     internalSubstrate: String,
     costHeading: String,
+    pricebreakdownHeading: String,
+    pricebreakdownFooter: String
 });
 
 quoteSchema.pre('save', function (next) {
