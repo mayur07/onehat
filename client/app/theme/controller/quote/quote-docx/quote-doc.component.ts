@@ -28,8 +28,8 @@ export class QuoteDocComponent implements OnInit {
         debugger;
         this.http.post('api/quote/saveDocx', { html: this.el.nativeElement['innerHTML'], name: this.quote.name }).subscribe((objecturl: string) => {
             debugger;
-            //let url = objecturl.replace('/app/client', '');
-            window.open(objecturl);
+            let url = objecturl.replace('/app/client', '');
+            window.open(url);
             console.log(objecturl, '......');
             //window.open(url);
         })
