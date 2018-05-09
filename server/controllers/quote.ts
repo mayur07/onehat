@@ -41,17 +41,15 @@ export default class QuoteCtrl extends BaseCtrl {
 
 
   getDocx = (req, res) => {
-    let filename = req.body.name;
     console.log("__dirname",__dirname);
     let docpath = __dirname.replace('\dist', '').replace('server', 'client').replace('controllers', 'assets');
     console.log(path.resolve(docpath, 'html.docx'));
-    let filepath=path.resolve(docpath, filename + '.docx').replace('/app/client','');
     var converted = HtmlDocx.asBlob(req.body.html);
-    
+    let filename = req.body.name;
     let pdfoptions = { format: 'Letter' };
-    fs.writeFile(filepath, converted, function (err) {
+    fs.writeFile(path.resolve(docpath, filename + '.docx'), converted, function (err) {
       if (err) throw err;
-      res.status(200).json(filepath);
+      res.status(200).json(path.resolve(docpath, filename + '.docx'));
       pdf.create(req.body.html, pdfoptions).toFile(path.resolve(docpath, filename + '.pdf'), function (err, res) {
         if (err) return console.log(err);
         console.log(res); // { filename: '/app/businesscard.pdf' }
