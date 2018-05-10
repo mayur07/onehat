@@ -25,7 +25,10 @@ const routes: Routes = [
                 path: 'project',
                 loadChildren: ".\/controller\/project\/project.module#ProjectModule"
             },
-           
+            {
+                path: 'employee',
+                loadChildren: ".\/controller\/employee\/employee.module#EmployeeModule"
+            },
             {
                 "path": "index",
                 "loadChildren": ".\/pages\/default\/index\/index.module#IndexModule"

@@ -1,0 +1,33 @@
+<div class="m-content">
+    <div class="row">
+        <div class="m-portlet">
+
+            <div class="col-xl-12">
+                <br>
+                <div class="col-xl-12">
+                    <button id="m_login_signin_submit" (click)="addEmployee()" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
+                        Add Employee
+                    </button>
+                </div>
+                <br>
+                <br>
+                <div class="col-xl-12">
+                    <div class="m-grid__item m-grid__item--fluid m-wrapper">
+                        <p-dataTable [value]="employeeList" selectionMode="single" [(selection)]="selectedEmployee" (onRowDblclick)="onRowDblclick($event)" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
+                            <p-header>List of Employees</p-header>  
+                            <p-column field="name" header="Employee Name"></p-column>
+                            <p-column field="type" header="Employee Type"></p-column>
+                            <p-column field="onProject" header="On Project"></p-column>
+                            <!-- <p-column field="comments" header="Comment"></p-column> -->
+                            <p-column header="Action">
+                                <ng-template let-employee="rowData" pTemplate="body"> 
+                                    <button type="button" pButton class="btn btn-link" (click)="editEmployee(employee)"> Edit </button>
+                                </ng-template>
+                            </p-column>
+                        </p-dataTable>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>                

@@ -1,0 +1,200 @@
+<div class="m-content">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="m-portlet m-portlet--tab">
+				<div class="m-portlet__head">
+					<div class="m-portlet__head-caption">
+						<div class="m-portlet__head-title">
+							<span class="m-portlet__head-icon m--hide">
+								<i class="la la-gear"></i>
+							</span>
+							<h3 class="m-portlet__head-text">
+								Add Employee
+							</h3>
+						</div>
+					</div>
+                </div>
+                <form class="m-form m-form--fit m-form--label-align-right">
+                    <div class="m-portlet__body">
+                        <div class="form-group m-form__group row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <label for="example-text-input" class="col-4" style="text-align: -webkit-right;" >
+                                        Employee Type
+                                    </label>
+                                    <div class="col-8">
+                                        <input class="form-control m-input" type="text" name="type" [(ngModel)]="employee.type" id="type">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <label for="example-text-input" class="col-4" style="text-align: -webkit-right;">
+                                        Contractor Name
+                                    </label>
+                                    <div class="col-8">
+                                        <input class="form-control m-input" type="text" name="contractor" [(ngModel)]="employee.contractor" id="contractor">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <label for="example-text-input" class="col-4" style="text-align: -webkit-right;" >
+                                        Employee Name
+                                    </label>
+                                    <div class="col-8">
+                                        <input class="form-control m-input" type="text" name="name" [(ngModel)]="employee.name" id="name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <label for="example-text-input" class="col-4" style="text-align: -webkit-right;" >
+                                        Mobile Number
+                                    </label>
+                                    <div class="col-8">
+                                        <input class="form-control m-input" type="number" name="phoneNumber" [(ngModel)]="employee.phoneNumber" id="phoneNumber">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <label for="example-text-input" class="col-2" style="text-align: -webkit-right;" >
+                                        Employee Address
+                                    </label>
+                                    <div class="col-8">
+                                        <div class="row" style="margin-left: 0%;">
+                                            <input class="form-control m-input" type="text" name="addressLine1" [(ngModel)]="employee.addressLine1" id="addressLine1">
+                                        </div>
+                                        <br>
+                                        <div class="row" style="margin-left: 0%;">
+                                            <input class="form-control m-input" type="text" name="addressLine2" [(ngModel)]="employee.addressLine2" id="addressLine2">
+                                        </div>
+                                        <br>
+                                        <div class="row" style="margin-left: 0%;">
+                                            <input class="form-control m-input" type="text" name="addressLine3" [(ngModel)]="employee.addressLine3" id="addressLine3">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <label for="example-text-input" class="col-4" style="text-align: -webkit-right;" >
+                                        Employee Qualification
+                                    </label>
+                                    <div class="col-8">
+                                        <input class="form-control m-input" type="text" name="qualification" [(ngModel)]="employee.qualification" id="qualification">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <label for="example-text-input" class="col-4" style="text-align: -webkit-right;" >
+                                        Rate
+                                    </label>
+                                    <div class="col-8">
+                                        <input class="form-control m-input" type="number" name="rate" [(ngModel)]="employee.rate" id="rate">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <label for="example-text-input" class="col-4" style="text-align: -webkit-right;" >
+                                        Super
+                                    </label>
+                                    <div class="col-8">
+                                        <input class="form-control m-input" type="text" name="super" [(ngModel)]="employee.super" id="super">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <label for="example-text-input" class="col-4" style="text-align: -webkit-right;" >
+                                        Compliance cards
+                                    </label>
+                                    <div class="col-8">
+                                        <input class="form-control m-input" type="number" name="complianceCards" [(ngModel)]="employee.complianceCards" id="complianceCards">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <label for="example-text-input"  class="col-4" style="text-align: -webkit-right;" >
+                                        Driving license
+                                    </label>
+                                    <div class="col-8">
+                                        <input class="form-control m-input" type="text" name="drivingLicense" [(ngModel)]="employee.drivingLicense" id="drivingLicense">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="form-group m-form__group row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <label for="example-text-input" class="col-4" style="text-align: -webkit-right;" >
+                                        Employee Tickets
+                                    </label>
+                                    <div class="col-8">
+                                        <input class="form-control m-input" type="number" name="tickets" [(ngModel)]="employee.tickets" id="tickets">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <label for="example-text-input" class="col-2" style="text-align: -webkit-right;" >
+                                        Other details
+                                    </label>
+                                    <div class="col-8">
+                                        <input class="form-control m-input" type="text" name="otherDetails" [(ngModel)]="employee.otherDetails" id="otherDetails">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <label for="example-text-input" class="col-4" style="text-align: -webkit-right;" >
+                                        Sub-contractor Amount
+                                    </label>
+                                    <div class="col-8">
+                                        <input class="form-control m-input" type="number" name="subContractorAmount" [(ngModel)]="employee.subContractorAmount" id="subContractorAmount">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                           
+                    </div>
+                    <div class="m-portlet__foot m-portlet__foot--fit">
+                        <div class="m-form__actions" style="text-align: right;">
+                            <div class="row">
+                                <div class="col-10">
+                                    <button type="button" (click)="submitInfo()" class="btn btn-success">
+                                        Submit
+                                    </button>
+                                    <button type="reset" class="btn btn-primary">
+                                        Clear
+                                    </button>
+                                    <button type="button" (click)="cancel()" class="btn btn-primary">
+                                        Cancel
+                                    </button>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>       
+                </form>
+			</div>
+        </div>
+    </div>
+</div>
